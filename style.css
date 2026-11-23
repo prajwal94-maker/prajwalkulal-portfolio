@@ -1923,11 +1923,11 @@ textarea:focus-visible {
 }
 
 .modal-body {
-  padding: 28px 24px;
+  padding: 32px 24px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: var(--bg-elevated);
-  display: flex;
-  justify-content: center;
+  display: block;
 }
 
 /* ==========================================================================
@@ -1938,10 +1938,14 @@ textarea:focus-visible {
   color: #111827 !important;
   max-width: 840px;
   width: 100%;
+  margin: 0 auto;
+  height: auto !important;
+  min-height: -moz-fit-content;
+  min-height: fit-content !important;
   padding: 48px 52px;
   border-radius: 4px;
   border: 1px solid #cbd5e1;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
   font-family: 'Aptos', 'Calibri', Arial, sans-serif;
   font-size: 10.5pt;
   line-height: 1.55;
@@ -1953,6 +1957,18 @@ textarea:focus-visible {
   color: #111827 !important;
   border-color: #94a3b8;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.resume-sheet *,
+.resume-sheet *::before,
+.resume-sheet *::after {
+  box-sizing: border-box;
+}
+
+.resume-sheet strong,
+.resume-sheet b {
+  color: #0f2942 !important;
+  font-weight: 700;
 }
 
 /* 1. Header: Left Name & Contact, Top-Right Photo */
@@ -2444,11 +2460,15 @@ textarea:focus-visible {
 
   .modal-body {
     padding: 16px 12px;
+    display: block;
   }
 
   .resume-sheet {
     padding: 30px 24px;
     font-size: 10pt;
+    margin: 0 auto;
+    width: 100%;
+    height: auto !important;
   }
 
   .cv-header {
@@ -2517,11 +2537,15 @@ textarea:focus-visible {
 
   .modal-body {
     padding: 12px 8px;
+    display: block;
   }
 
   .resume-sheet {
     padding: 22px 16px;
     font-size: 9.8pt;
+    margin: 0 auto;
+    width: 100%;
+    height: auto !important;
   }
 
   .cv-header {
