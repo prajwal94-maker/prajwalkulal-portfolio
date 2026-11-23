@@ -191,6 +191,17 @@
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
+            <button type="button" id="hero-resume-btn" class="btn btn-outline" aria-label="View Printable Resume">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>View Resume</span>
+            </button>
             <a href="#contact" class="btn btn-outline">
               <span>Get in Touch</span>
             </a>
@@ -1179,23 +1190,31 @@
   <div id="resume-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="resume-modal-title">
     <div class="modal-dialog">
       <div class="modal-header">
-        <div>
-          <h2 id="resume-modal-title" class="modal-title">Resume Overview</h2>
-          <p class="modal-subtitle">Prajwal Kulal • MCA Student • Poornaprajna Institute of Management</p>
+        <div class="modal-header-info">
+          <div class="modal-title-row">
+            <h2 id="resume-modal-title" class="modal-title">PRAJWAL KULAL — Resume</h2>
+            <span class="resume-badge">A4 ATS Standard</span>
+          </div>
+          <p class="modal-subtitle">MCA Student • Poornaprajna Institute of Management (PIM), Udupi</p>
         </div>
         <div class="modal-actions">
-          <button id="print-resume-btn" class="btn btn-outline-sm" title="Print or save as PDF">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button type="button" id="copy-resume-btn" class="btn btn-outline-sm" title="Copy ATS plain-text resume to clipboard">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Text</span>
+          </button>
+          <button type="button" id="print-resume-btn" class="btn btn-primary btn-sm" title="Print or save as PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 6 2 18 2 18 9"></polyline>
               <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
               <rect x="6" y="14" width="12" height="8"></rect>
             </svg>
             <span>Print / Save PDF</span>
           </button>
-          <button id="close-resume-btn" class="icon-btn" aria-label="Close resume modal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button type="button" id="close-resume-btn" class="icon-btn" aria-label="Close resume modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
@@ -1204,118 +1223,163 @@
       </div>
 
       <div class="modal-body printable-resume-content">
-        <!-- Resume Header -->
-        <div class="resume-sheet">
-          <div class="resume-header">
-            <div>
-              <h1 class="resume-name">PRAJWAL KULAL</h1>
-              <p class="resume-sub">MCA Student | Aspiring Software Engineer | Interested in Cloud Computing & AI</p>
-              <p class="resume-contact-line">
-                Udupi, Karnataka, India • +91 8970261630 • prajwalkulal94@gmail.com
-              </p>
-              <p class="resume-contact-links">
-                <a
-                  href="https://www.linkedin.com/in/prajwal-kulal-5104aa331/">linkedin.com/in/prajwal-kulal-5104aa331</a>
-                •
-                <a href="https://github.com/prajwal94-maker">github.com/prajwal94-maker</a>
-              </p>
+        <!-- Resume Document Container (Professional Single-Column Layout) -->
+        <article class="resume-sheet" id="resume-sheet">
+          <!-- 1. Header: Name & Contact Details on Left, Clean Photo on Top-Right -->
+          <header class="cv-header">
+            <div class="cv-header-info">
+              <h1 class="cv-name">PRAJWAL KULAL</h1>
+              <p class="cv-headline">MCA Student &bull; Aspiring Software Engineer &bull; Interested in Cloud Computing &amp; AI</p>
+              <div class="cv-contact-row">
+                <span>Udupi, Karnataka, India</span>
+                <span class="cv-dot">&bull;</span>
+                <a href="tel:8970261630">+91 8970261630</a>
+                <span class="cv-dot">&bull;</span>
+                <a href="mailto:prajwalkulal94@gmail.com">prajwalkulal94@gmail.com</a>
+              </div>
+              <div class="cv-links-row">
+                <a href="https://www.linkedin.com/in/prajwal-kulal-5104aa331/" target="_blank" rel="noopener noreferrer">linkedin.com/in/prajwal-kulal-5104aa331</a>
+                <span class="cv-dot">&bull;</span>
+                <a href="https://github.com/prajwal94-maker" target="_blank" rel="noopener noreferrer">github.com/prajwal94-maker</a>
+              </div>
             </div>
-          </div>
+            <div class="cv-photo-box">
+              <img src="prajwal-profile.jpg" alt="Prajwal Kulal" class="cv-photo" width="82" height="98" loading="eager" decoding="async">
+            </div>
+          </header>
 
-          <hr class="resume-hr">
-
-          <!-- Objective / Summary -->
-          <section class="resume-section">
-            <h2 class="resume-section-title">PROFESSIONAL SUMMARY</h2>
-            <p class="resume-text">
-              MCA student with a strong interest in software development, cloud computing, and emerging technologies.
-              Grounded in Python, Java, web development, and database management. Currently expanding practical
-              knowledge of AWS Cloud Computing and strengthening technical problem-solving capabilities to build
-              scalable applications.
+          <!-- 2. Professional Summary -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Professional Summary</h2>
+            <p class="cv-summary-text">
+              First-year Master of Computer Applications (MCA) student at Poornaprajna Institute of Management (PIM) with a strong foundation in Python, Java, web development, and relational database management. Graduated BCA with distinction (9.21 CGPA), demonstrating consistent academic excellence and disciplined algorithmic problem-solving. Currently expanding hands-on knowledge in AWS Cloud Computing and backend application development to engineer reliable, scalable software solutions. Seeking entry-level software engineering, web development, or cloud-related roles.
             </p>
           </section>
 
-          <!-- Education -->
-          <section class="resume-section">
-            <h2 class="resume-section-title">EDUCATION</h2>
-            <div class="resume-entry">
-              <div class="resume-entry-header">
-                <strong>Master of Computer Applications (MCA)</strong>
-                <span class="resume-dates">2026 – 2028 (Pursuing)</span>
+          <!-- 3. Technical Skills (Simple Grouped Text, No Badges) -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Technical Skills</h2>
+            <div class="cv-skills-list">
+              <div class="cv-skill-item">
+                <strong class="cv-skill-label">Programming Languages:</strong>
+                <span class="cv-skill-text">Java (Intermediate), Python (Intermediate), C (Intermediate), JavaScript (Intermediate), PHP (Basic), R (Basic)</span>
               </div>
-              <div class="resume-institution">Poornaprajna Institute of Management (PIM), Udupi, Karnataka</div>
-              <div class="resume-notes">Specialization: Computer Applications & Software Development</div>
-            </div>
-
-            <div class="resume-entry">
-              <div class="resume-entry-header">
-                <strong>Bachelor of Computer Applications (BCA)</strong>
-                <span class="resume-dates">2023 – 2026</span>
+              <div class="cv-skill-item">
+                <strong class="cv-skill-label">Web &amp; Frontend:</strong>
+                <span class="cv-skill-text">HTML5, CSS3, JavaScript (ES6+), Bootstrap, Responsive Web Design</span>
               </div>
-              <div class="resume-institution">Milagres College, Kallianpur, Karnataka</div>
-              <div class="resume-notes"><strong>CGPA: 9.21 (Distinction)</strong> • Specialization: Computer
-                Applications</div>
+              <div class="cv-skill-item">
+                <strong class="cv-skill-label">Backend &amp; Databases:</strong>
+                <span class="cv-skill-text">Node.js, Express.js, MySQL, Relational Schema Design, SQL Queries &amp; Optimization</span>
+              </div>
+              <div class="cv-skill-item">
+                <strong class="cv-skill-label">Cloud &amp; Deployment:</strong>
+                <span class="cv-skill-text">AWS (EC2, S3, IAM), Vercel, GitHub Pages</span>
+              </div>
+              <div class="cv-skill-item">
+                <strong class="cv-skill-label">Development Tools:</strong>
+                <span class="cv-skill-text">Git, GitHub, Linux (Kali Linux), Visual Studio Code, Jupyter Notebook, Google Antigravity</span>
+              </div>
+              <div class="cv-skill-item">
+                <strong class="cv-skill-label">Core Competencies:</strong>
+                <span class="cv-skill-text">Data Structures &amp; Algorithms, Object-Oriented Programming (OOP), Problem Solving, Testing &amp; Debugging</span>
+              </div>
             </div>
           </section>
 
-          <!-- Technical Skills -->
-          <section class="resume-section">
-            <h2 class="resume-section-title">TECHNICAL SKILLS</h2>
-            <ul class="resume-skills-list">
-              <li><strong>Programming Languages:</strong> C (Intermediate), Java (Intermediate), Python (Intermediate),
-                JavaScript (Intermediate), PHP (Basic), R (Basic)</li>
-              <li><strong>Web Fundamentals:</strong> HTML (Intermediate), CSS (Intermediate), Bootstrap (Intermediate)
+          <!-- 4. Projects -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Projects</h2>
+            
+            <div class="cv-item">
+              <div class="cv-item-header">
+                <div class="cv-item-title-group">
+                  <strong class="cv-item-title">Event-Hall-Management-System</strong>
+                  <span class="cv-item-meta-inline">| Node.js, Express.js, MySQL, JavaScript, HTML5, CSS3</span>
+                </div>
+                <a href="https://github.com/prajwal94-maker/Event-Hall-Management-System" target="_blank" rel="noopener noreferrer" class="cv-link">GitHub Repository</a>
+              </div>
+              <ul class="cv-bullet-list">
+                <li>Developed a full-stack web application to simplify event hall reservation, eliminate double bookings, and digitize venue management workflows.</li>
+                <li>Implemented real-time hall availability checks, dynamic booking cost calculations (including catering and stage decorations), and advance payment workflows.</li>
+                <li>Designed normalized relational MySQL database tables with integrity constraints to reliably store reservation schedules, payments, and client records.</li>
+              </ul>
+            </div>
+
+            <div class="cv-item">
+              <div class="cv-item-header">
+                <div class="cv-item-title-group">
+                  <strong class="cv-item-title">AWS Cloud Architecture &amp; AI Pipeline</strong>
+                  <span class="cv-item-meta-inline">| AWS (EC2, S3, IAM), Python, NumPy, Pandas, Linux</span>
+                </div>
+                <span class="cv-item-date">Active Study</span>
+              </div>
+              <ul class="cv-bullet-list">
+                <li>Configuring cloud infrastructure to explore serverless deployment, access control policies, and automated pipelines using AWS services.</li>
+                <li>Writing analytical data processing and manipulation scripts in Python using NumPy and Pandas within Linux server environments.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 5. Education -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Education</h2>
+            
+            <div class="cv-item">
+              <div class="cv-item-header">
+                <strong class="cv-item-title">Master of Computer Applications (MCA)</strong>
+                <span class="cv-item-date">2026 – 2028 (Pursuing)</span>
+              </div>
+              <div class="cv-item-sub">
+                <span>Poornaprajna Institute of Management (PIM) — Udupi, Karnataka</span>
+              </div>
+              <p class="cv-item-desc">
+                Specialization: Computer Applications &amp; Software Development. Coursework in Advanced Software Architecture, Relational Databases, Cloud Models, and Algorithmic Design.
+              </p>
+            </div>
+
+            <div class="cv-item">
+              <div class="cv-item-header">
+                <strong class="cv-item-title">Bachelor of Computer Applications (BCA)</strong>
+                <span class="cv-item-date">2023 – 2026</span>
+              </div>
+              <div class="cv-item-sub">
+                <span>Milagres College, Kallianpur — Udupi, Karnataka</span>
+                <span class="cv-item-distinction">Grade: CGPA 9.21 (Distinction)</span>
+              </div>
+              <p class="cv-item-desc">
+                Specialization: Computer Applications. Core coursework in C, Java, Python, Database Management (MySQL), Data Structures, and Operating Systems.
+              </p>
+            </div>
+          </section>
+
+          <!-- 6. Certifications -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Certifications</h2>
+            <ul class="cv-bullet-list cv-cert-list">
+              <li>
+                <strong>Full-Stack Web Development Bootcamp</strong> — Udemy (2026) 
+                [<a href="https://www.udemy.com/certificate/UC-d0ff519b-1311-403d-b706-c7d6e01a322a/" target="_blank" rel="noopener noreferrer">Credential Link</a>]
               </li>
-              <li><strong>Backend & Databases:</strong> Node.js, Express.js, MySQL (Intermediate), SQL Queries
-                (Intermediate)</li>
-              <li><strong>Cloud & Deployment:</strong> AWS (Cloud Fundamentals), Vercel, GitHub Pages</li>
-              <li><strong>Data Science & AI:</strong> NumPy, Pandas, Jupyter Notebook</li>
-              <li><strong>Developer Tools & OS:</strong> Git, GitHub, Visual Studio Code, Linux, Google Antigravity</li>
-              <li><strong>Engineering Fundamentals:</strong> Data Structures & Algorithms, OOP, Testing & Debugging,
-                Problem Solving</li>
+              <li>
+                <strong>Introduction to SQL</strong> — Simplilearn (2026)
+              </li>
+              <li>
+                <strong>Introduction to Kali Linux Basic</strong> — Simplilearn (2026)
+              </li>
             </ul>
           </section>
 
-          <!-- Projects -->
-          <section class="resume-section">
-            <h2 class="resume-section-title">PROJECTS</h2>
-            <div class="resume-entry">
-              <div class="resume-entry-header">
-                <strong>Event-Hall-Management-System</strong>
-                <span class="resume-dates">Node.js, Express.js, MySQL, JavaScript, HTML, CSS</span>
-              </div>
-              <p class="resume-project-desc">
-                Developed a full-stack web application simplifying event hall booking and operations. Enabled users to
-                browse hall listings, verify real-time availability, select food and stage decorations, calculate
-                comprehensive booking costs dynamically, and record advance payments to eliminate double bookings and
-                paper logs.
-              </p>
-              <p class="resume-project-link">
-                Source: <a
-                  href="https://github.com/prajwal94-maker/Event-Hall-Management-System">github.com/prajwal94-maker/Event-Hall-Management-System</a>
-              </p>
-            </div>
-          </section>
-
-          <!-- Certifications -->
-          <section class="resume-section">
-            <h2 class="resume-section-title">CERTIFICATIONS</h2>
-            <ul class="resume-bullet-list">
-              <li><strong>Full-Stack Web Development Bootcamp</strong> – Udemy (2026)</li>
-              <li><strong>Introduction to SQL</strong> – Simplilearn (2026)</li>
-              <li><strong>Introduction to Kali Linux Basic</strong> – Simplilearn (2026)</li>
-            </ul>
-          </section>
-
-          <!-- Extracurricular & Languages -->
-          <section class="resume-section">
-            <h2 class="resume-section-title">LANGUAGES & INTERESTS</h2>
-            <p class="resume-text">
-              <strong>Natural Languages:</strong> English, Kannada, Hindi<br>
-              <strong>Interests:</strong> Web Development, Cloud Computing, Artificial Intelligence, Problem Solving.
+          <!-- 7. Languages -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Languages</h2>
+            <p class="cv-plain-text">
+              <strong>English:</strong> Professional Working Proficiency &nbsp;|&nbsp; 
+              <strong>Kannada:</strong> Native &nbsp;|&nbsp; 
+              <strong>Hindi:</strong> Conversational
             </p>
           </section>
-        </div>
+        </article>
       </div>
     </div>
   </div>
