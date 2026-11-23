@@ -214,6 +214,7 @@ function initResumeModal() {
   const modal = document.getElementById('resume-modal');
   const openDesktopBtn = document.getElementById('open-resume-btn');
   const openMobileBtn = document.getElementById('mobile-resume-btn');
+  const heroResumeBtn = document.getElementById('hero-resume-btn');
   const closeBtn = document.getElementById('close-resume-btn');
   const printBtn = document.getElementById('print-resume-btn');
 
@@ -233,6 +234,7 @@ function initResumeModal() {
 
   if (openDesktopBtn) openDesktopBtn.addEventListener('click', openModal);
   if (openMobileBtn) openMobileBtn.addEventListener('click', openModal);
+  if (heroResumeBtn) heroResumeBtn.addEventListener('click', openModal);
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
   // Close when clicking backdrop outside dialog
@@ -249,14 +251,118 @@ function initResumeModal() {
     }
   });
 
-  // Print button
+  // Print button with zero-cutoff scroll reset
   if (printBtn) {
     printBtn.addEventListener('click', () => {
+      window.scrollTo(0, 0);
       const modalBody = modal.querySelector('.modal-body');
       if (modalBody) modalBody.scrollTop = 0;
-      window.scrollTo(0, 0);
       document.body.style.overflow = 'visible';
-      window.print();
+      setTimeout(() => {
+        window.print();
+      }, 120);
+    });
+  }
+
+  // Pre-print hook to ensure print begins from absolute top
+  window.addEventListener('beforeprint', () => {
+    window.scrollTo(0, 0);
+    const modalBody = modal ? modal.querySelector('.modal-body') : null;
+    if (modalBody) modalBody.scrollTop = 0;
+    document.body.style.overflow = 'visible';
+  });
+
+  // Copy ATS Plain-Text Resume
+  const copyResumeBtn = document.getElementById('copy-resume-btn');
+  if (copyResumeBtn) {
+    copyResumeBtn.addEventListener('click', async () => {
+      const plainTextResume = `PRAJWAL KULAL
+MCA Student | Aspiring Software Engineer | Interested in Cloud Computing & AI
+Location: Udupi, Karnataka, India
+Phone: +91 8970261630 | Email: prajwalkulal94@gmail.com
+LinkedIn: https://www.linkedin.com/in/prajwal-kulal-5104aa331/
+GitHub: https://github.com/prajwal94-maker
+
+==================================================
+1. PROFESSIONAL SUMMARY
+==================================================
+First-year Master of Computer Applications (MCA) student at Poornaprajna Institute of Management (PIM) with a strong foundation in Python, Java, web development, and relational database management. Graduated BCA with distinction (9.21 CGPA), demonstrating consistent academic excellence and disciplined algorithmic problem-solving. Currently expanding hands-on knowledge in AWS Cloud Computing and backend application development to engineer reliable, scalable software solutions. Seeking entry-level software engineering, web development, or cloud-related roles.
+
+==================================================
+2. TECHNICAL SKILLS
+==================================================
+• Programming Languages: Java (Intermediate), Python (Intermediate), C (Intermediate), JavaScript (Intermediate), PHP (Basic), R (Basic)
+• Web & Frontend: HTML5, CSS3, JavaScript (ES6+), Bootstrap, Responsive Web Design
+• Backend & Databases: Node.js, Express.js, MySQL, Relational Schema Design, SQL Queries & Optimization
+• Cloud & Deployment: AWS (EC2, S3, IAM), Vercel, GitHub Pages
+• Development Tools: Git, GitHub, Linux (Kali Linux), Visual Studio Code, Jupyter Notebook, Google Antigravity
+• Core Competencies: Data Structures & Algorithms, Object-Oriented Programming (OOP), Problem Solving, Testing & Debugging
+
+==================================================
+3. PROJECTS
+==================================================
+• Event-Hall-Management-System
+  Technologies: Node.js, Express.js, MySQL, JavaScript, HTML5, CSS3
+  Repository: https://github.com/prajwal94-maker/Event-Hall-Management-System
+  - Developed a full-stack web application to simplify event hall reservation, eliminate double bookings, and digitize venue management workflows.
+  - Implemented real-time hall availability checks, dynamic booking cost calculations (including catering and stage decorations), and advance payment workflows.
+  - Designed normalized relational MySQL database tables with integrity constraints to reliably store reservation schedules, payments, and client records.
+
+• AWS Cloud Architecture & AI Pipeline (Active Study)
+  Technologies: AWS (EC2, S3, IAM), Python, NumPy, Pandas, Linux
+  - Configuring cloud infrastructure to explore serverless deployment, access control policies, and automated pipelines using AWS services.
+  - Writing analytical data processing and manipulation scripts in Python using NumPy and Pandas within Linux server environments.
+
+==================================================
+4. EDUCATION
+==================================================
+• Master of Computer Applications (MCA)
+  Poornaprajna Institute of Management (PIM) — Udupi, Karnataka
+  Duration: 2026 – 2028 (Pursuing)
+  Specialization: Computer Applications & Software Development
+
+• Bachelor of Computer Applications (BCA)
+  Milagres College, Kallianpur — Udupi, Karnataka
+  Duration: 2023 – 2026
+  Academic Score: CGPA 9.21 / 10.0 (Distinction)
+  Specialization: Computer Applications
+
+==================================================
+5. CERTIFICATIONS
+==================================================
+• Full-Stack Web Development Bootcamp – Udemy (2026)
+  Credential: https://www.udemy.com/certificate/UC-d0ff519b-1311-403d-b706-c7d6e01a322a/
+• Introduction to SQL – Simplilearn (2026)
+• Introduction to Kali Linux Basic – Simplilearn (2026)
+
+==================================================
+6. LANGUAGES
+==================================================
+• English: Professional Working Proficiency
+• Kannada: Native
+• Hindi: Conversational`;
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(plainTextResume);
+        } else {
+          const temp = document.createElement('textarea');
+          temp.value = plainTextResume;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand('copy');
+          document.body.removeChild(temp);
+        }
+
+        const span = copyResumeBtn.querySelector('span');
+        if (span) span.textContent = 'Copied!';
+        showToast('ATS Plain-text resume copied to clipboard!');
+        setTimeout(() => {
+          if (span) span.textContent = 'Copy Text';
+        }, 2500);
+      } catch (err) {
+        showToast('Failed to copy text. Please select manually.');
+      }
     });
   }
 
